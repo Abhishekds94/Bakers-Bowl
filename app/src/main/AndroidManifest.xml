@@ -24,6 +24,14 @@
 
         <activity android:name=".DashboardActivity"/>
 
+        <activity android:name=".NutellaPieActivity"/>
+
+        <activity android:name=".BrownieActivity"/>
+
+        <activity android:name=".YellowCakeActivity"/>
+
+        <activity android:name=".CheeseCakeActivity"/>
+
     </application>
 
 </manifest>
