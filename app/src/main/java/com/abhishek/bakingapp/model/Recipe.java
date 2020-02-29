@@ -48,8 +48,8 @@ public class Recipe implements Parcelable
     protected Recipe(Parcel in) {
         this.id = ((Integer) in.readValue((Integer.class.getClassLoader())));
         this.name = ((String) in.readValue((String.class.getClassLoader())));
-        in.readList(this.ingredients, (com.abhishek.bakingapp.Ingredient.class.getClassLoader()));
-        in.readList(this.steps, (com.abhishek.bakingapp.Step.class.getClassLoader()));
+        in.readList(this.ingredients, (com.abhishek.bakingapp.model.Ingredient.class.getClassLoader()));
+        in.readList(this.steps, (com.abhishek.bakingapp.model.Step.class.getClassLoader()));
         this.servings = ((Integer) in.readValue((Integer.class.getClassLoader())));
         this.image = ((String) in.readValue((String.class.getClassLoader())));
     }
