@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.abhishek.bakingapp.R;
 import com.abhishek.bakingapp.RecipeDetailsActivity;
 import com.abhishek.bakingapp.model.Recipe;
+import com.abhishek.bakingapp.utils.ConstantsUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -89,7 +90,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 recipeJson = jsonToString(mJsonResult, holder.getAdapterPosition());
                 Intent intent = new Intent(mContext, RecipeDetailsActivity.class);
                 ArrayList<Recipe> recipeArrayList = new ArrayList<>();
-                recipeArrayList.add(recipe);/*
+                recipeArrayList.add(recipe);
                 intent.putParcelableArrayListExtra(ConstantsUtil.RECIPE_INTENT_EXTRA, recipeArrayList);
                 intent.putExtra(ConstantsUtil.JSON_RESULT_EXTRA, recipeJson);
                 mContext.startActivity(intent);
@@ -98,7 +99,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 editor.putString(ConstantsUtil.JSON_RESULT_EXTRA, recipeJson);
                 editor.apply();
 
-                if(Build.VERSION.SDK_INT > 25){
+/*                if(Build.VERSION.SDK_INT > 25){
                     //Start the widget service to update the widget
                     YummioWidgetService.startActionOpenRecipeO(mContext);
                 }
