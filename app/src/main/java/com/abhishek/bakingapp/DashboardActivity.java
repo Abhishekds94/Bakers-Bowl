@@ -48,8 +48,9 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().hide();
+
 
         setContentView(R.layout.activity_dashboard);
         ButterKnife.bind(this);
