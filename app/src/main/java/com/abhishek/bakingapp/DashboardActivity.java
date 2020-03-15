@@ -32,17 +32,17 @@ public class DashboardActivity extends AppCompatActivity {
 
 
     private final String TAG = DashboardActivity.class.getSimpleName();
-    public static final String RECIPE_JSON_STATE = "recipe_json_state";
-    public static final String RECIPE_ARRAYLIST_STATE = "recipe_arraylist_state";
+    public static final String JSON_STATE = "json_state";
+    public static final String ARRAYLIST_STATE = "arraylist_state";
 
-    RecipeService mRecipeService;
+    RecipeService mService;
     RecipeAdapter recipeAdapter;
     String mJsonResult;
-    ArrayList<Recipe> mRecipeArrayList = new ArrayList<>();
+    ArrayList<Recipe> mArrayList = new ArrayList<>();
 
     @BindView(R.id.rv_recipe_list) RecyclerView mRecyclerViewRecipes;
 
-    private boolean isTablet;
+    private boolean ifTablet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,18 +56,18 @@ public class DashboardActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
 //        if(findViewById(R.id.recipe_tablet) != null){
-//            isTablet = true;
+//            ifTablet = true;
 //        }
 //        else{
-//            isTablet = false;
+//            ifTablet = false;
 //        }
 
         if(savedInstanceState != null){
-            mJsonResult = savedInstanceState.getString(RECIPE_JSON_STATE);
-            mRecipeArrayList = savedInstanceState.getParcelableArrayList(RECIPE_ARRAYLIST_STATE);
-            recipeAdapter = new RecipeAdapter(DashboardActivity.this, mRecipeArrayList, mJsonResult);
+            mJsonResult = savedInstanceState.getString(JSON_STATE);
+            mArrayList = savedInstanceState.getParcelableArrayList(ARRAYLIST_STATE);
+            recipeAdapter = new RecipeAdapter(DashboardActivity.this, mArrayList, mJsonResult);
             RecyclerView.LayoutManager mLayoutManager;
-            if(isTablet){
+            if(ifTablet){
                 mLayoutManager = new GridLayoutManager(DashboardActivity.this, 2);
             }
             else{
@@ -78,13 +78,12 @@ public class DashboardActivity extends AppCompatActivity {
             mRecyclerViewRecipes.setAdapter(recipeAdapter);
         }
         else{
-            mRecipeService = new RecipeClient().mRecipeService;
+            mService = new RecipeClient().mRecipeService;
             new FetchRecipesAsync().execute();
 
         }
 
     }
-
 
     private class FetchRecipesAsync extends AsyncTask<Void,Void,Void>{
         @Override
@@ -94,9 +93,8 @@ public class DashboardActivity extends AppCompatActivity {
         }
     }
 
-    // Fetch recipes
     private void fetchRecipes() {
-        Call<ArrayList<Recipe>> call = mRecipeService.getRecipes();
+        Call<ArrayList<Recipe>> call = mService.getRecipes();
 
         call.enqueue(new Callback<ArrayList<Recipe>>() {
             @Override
@@ -104,15 +102,15 @@ public class DashboardActivity extends AppCompatActivity {
                 //Test if response is succesfull
                 ArrayList<Recipe> recipe = response.body();
                 Log.i("BAKING_APP", "Recipe"+recipe);
-                mRecipeArrayList = response.body();
-                Log.i("BAKING_APP", "BR-"+mRecipeArrayList);
+                mArrayList = response.body();
+                Log.i("BAKING_APP", "BR-"+mArrayList);
                 Toast.makeText(DashboardActivity.this, "Recipe"+recipe, Toast.LENGTH_SHORT).show();
-                Toast.makeText(DashboardActivity.this, "BR-"+mRecipeArrayList, Toast.LENGTH_SHORT).show();
+                Toast.makeText(DashboardActivity.this, "BR-"+mArrayList, Toast.LENGTH_SHORT).show();
                 mJsonResult = new Gson().toJson(response.body());
 
-                recipeAdapter = new RecipeAdapter(DashboardActivity.this, mRecipeArrayList, mJsonResult);
+                recipeAdapter = new RecipeAdapter(DashboardActivity.this, mArrayList, mJsonResult);
                 RecyclerView.LayoutManager mLayoutManager;
-                if(isTablet){
+                if(ifTablet){
                     mLayoutManager = new GridLayoutManager(DashboardActivity.this, 2);
                 }
                 else{
@@ -134,7 +132,7 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(RECIPE_JSON_STATE, mJsonResult);
-        outState.putParcelableArrayList(RECIPE_ARRAYLIST_STATE, mRecipeArrayList);
+        outState.putString(JSON_STATE, mJsonResult);
+        outState.putParcelableArrayList(ARRAYLIST_STATE, mArrayList);
     }
 }
