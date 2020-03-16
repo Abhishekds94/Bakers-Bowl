@@ -30,8 +30,8 @@ import butterknife.ButterKnife;
 
 public class RecipeDetailsActivity extends AppCompatActivity {
 
-    public static final String RECIPE_LIST_STATE = "recipe_details_list";
-    public static final String RECIPE_JSON_STATE = "recipe_json_list";
+    public static final String LIST_STATE = "details_list";
+    public static final String JSON_STATE = "json_list";
 
     @BindView(R.id.rv_ingredients_list)
     RecyclerView mRecyclerView;
@@ -40,12 +40,12 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     Button mButtonTutorial;
 
     RecipeDetailsAdapter mRecipeDetailsAdapter;
-    ArrayList<Recipe> mRecipeArrayList;
-    ArrayList<Step> mStepArrayList;
     String mJsonResult;
+    ArrayList<Step> mStepArrayList;
+    ArrayList<Recipe> mRecipeArrayList;
     List<Ingredient> mIngredientList;
 
-    private boolean isTablet;
+    private boolean ifTablet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,16 +58,16 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 /*        if(findViewById(R.id.recipe_details_tablet) != null){
-            isTablet = true;
+            ifTablet = true;
         }
         else{
-            isTablet = false;
+            ifTablet = false;
         }*/
 
 
         if(getIntent().getStringExtra(ConstantsUtil.WIDGET_EXTRA) != null){
             SharedPreferences sharedpreferences =
-                    getSharedPreferences(ConstantsUtil.YUMMIO_SHARED_PREF,MODE_PRIVATE);
+                    getSharedPreferences(ConstantsUtil.SHARED_PREF,MODE_PRIVATE);
             String jsonRecipe = sharedpreferences.getString(ConstantsUtil.JSON_RESULT_EXTRA, "");
             mJsonResult = jsonRecipe;
 
@@ -78,65 +78,55 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             mIngredientList = recipe.getIngredients();
         }
         else{
-
-            // Check if state saved
             if(savedInstanceState != null)
             {
-                mRecipeArrayList = savedInstanceState.getParcelableArrayList(RECIPE_LIST_STATE);
-                mJsonResult = savedInstanceState.getString(RECIPE_JSON_STATE);
+                mRecipeArrayList = savedInstanceState.getParcelableArrayList(LIST_STATE);
                 mStepArrayList = (ArrayList<Step>) mRecipeArrayList.get(0).getSteps();
                 mIngredientList = mRecipeArrayList.get(0).getIngredients();
+                mJsonResult = savedInstanceState.getString(JSON_STATE);
             }
             else{
-                // Get recipe from intent extra
                 Intent recipeIntent = getIntent();
-                mRecipeArrayList = recipeIntent.getParcelableArrayListExtra(ConstantsUtil.RECIPE_INTENT_EXTRA);
                 mJsonResult = recipeIntent.getStringExtra(ConstantsUtil.JSON_RESULT_EXTRA);
                 mStepArrayList = (ArrayList<Step>) mRecipeArrayList.get(0).getSteps();
                 mIngredientList = mRecipeArrayList.get(0).getIngredients();
+                mRecipeArrayList = recipeIntent.getParcelableArrayListExtra(ConstantsUtil.RECIPE_INTENT_EXTRA);
             }
         }
 
         mRecipeDetailsAdapter = new RecipeDetailsAdapter(this, mIngredientList);
 
         RecyclerView.LayoutManager mLayoutManager;
-        if(isTablet){
+        if(ifTablet){
             mLayoutManager = new GridLayoutManager(this, 2);
         }
         else{
             mLayoutManager = new LinearLayoutManager(this);
         }
-
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mRecipeDetailsAdapter);
 
-
-/*        mButtonTutorial.setOnClickListener(new View.OnClickListener() {
+        mButtonTutorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RecipeDetailsActivity.this, CookingActivity.class);
+                Intent intent = new Intent(RecipeDetailsActivity.this, TutorialsActivity.class);
                 intent.putParcelableArrayListExtra(ConstantsUtil.STEP_INTENT_EXTRA, mStepArrayList);
                 intent.putExtra(ConstantsUtil.JSON_RESULT_EXTRA, mJsonResult);
                 startActivity(intent);
             }
-        });*/
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
+        });
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelableArrayList(RECIPE_LIST_STATE, mRecipeArrayList);
-        outState.putString(RECIPE_JSON_STATE, mJsonResult);
+        outState.putParcelableArrayList(LIST_STATE, mRecipeArrayList);
+        outState.putString(JSON_STATE, mJsonResult);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 }
