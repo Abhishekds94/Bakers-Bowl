@@ -26,6 +26,8 @@
 
         <activity android:name=".RecipeDetailsActivity"/>
 
+        <activity android:name=".TutorialsActivity"/>
+
     </application>
 
 </manifest>

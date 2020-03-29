@@ -14,7 +14,7 @@ public class ConstantsUtil {
     public static final String STEP_DESCRIPTION = "step_description";
     public static final String STEP_SHORT_DESCRIPTION = "step_short_description";
     public static final String STEP_NUMBER = "step_number";
-    public static final String YUMMIO_SHARED_PREF = "yummio_shared_pref";
+    public static final String SHARED_PREF = "shared_pref";
 
     public static String [] units = {"CUP","TBLSP","TSP","G","K","OZ","UNIT"};
     public static String [] unitName = {"Cup","Tablespoon","Teaspoon","Gram","Kilogram","Ounce","Unit"};
