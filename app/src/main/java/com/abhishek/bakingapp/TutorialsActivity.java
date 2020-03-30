@@ -40,9 +40,9 @@ public class TutorialsActivity extends AppCompatActivity implements View.OnClick
     @BindView(R.id.btn_prev)
     Button mButtonPreviousStep;
 
-/*    @Nullable
+    @Nullable
     @BindView(R.id.rv_recipe_steps)
-    RecyclerView mRecyclerViewSteps;*/
+    RecyclerView mRecyclerViewSteps;
 
     boolean isFromWidget;
     StepNumberAdapter mStepNumberAdapter;
@@ -59,13 +59,12 @@ public class TutorialsActivity extends AppCompatActivity implements View.OnClick
 
         ifTablet = false;
 
-/*        // Check if device is a tablet
-        if(findViewById(R.id.cooking_tablet) != null){
+        if(findViewById(R.id.recipetutorials_tablet) != null){
             ifTablet = true;
         }
         else{
             ifTablet = false;
-        }*/
+        }
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -82,7 +81,6 @@ public class TutorialsActivity extends AppCompatActivity implements View.OnClick
                 isFromWidget = false;
             }
         }
-        // If there is no saved state, instantiate fragment
         if(savedInstanceState == null){
             playVideo(mStepArrayList.get(mVideoNumber));
         }
@@ -128,7 +126,6 @@ public class TutorialsActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        //If it's last step show cooking is over
         if(mVideoNumber == mStepArrayList.size()-1){
             Toast.makeText(this, "Cooking finished", Toast.LENGTH_SHORT).show();
         }
@@ -157,15 +154,14 @@ public class TutorialsActivity extends AppCompatActivity implements View.OnClick
 
     public void handleUiForDevice(){
         if(!ifTablet){
-            // Set button listeners
             mButtonNextStep.setOnClickListener(this);
             mButtonPreviousStep.setOnClickListener(this);
         }
-        else{//Tablet view
+        else{
             mStepNumberAdapter = new StepNumberAdapter(this,mStepArrayList, this, mVideoNumber);
             mLinearLayoutManager = new LinearLayoutManager(this);
-/*            mRecyclerViewSteps.setLayoutManager(mLinearLayoutManager);
-            mRecyclerViewSteps.setAdapter(mStepNumberAdapter);*/
+            mRecyclerViewSteps.setLayoutManager(mLinearLayoutManager);
+            mRecyclerViewSteps.setAdapter(mStepNumberAdapter);
         }
     }
 

@@ -57,12 +57,12 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         // Up navigation
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-/*        if(findViewById(R.id.recipe_details_tablet) != null){
+        if(findViewById(R.id.recipedetails_tablet) != null){
             ifTablet = true;
         }
         else{
             ifTablet = false;
-        }*/
+        }
 
 
         if(getIntent().getStringExtra(ConstantsUtil.WIDGET_EXTRA) != null){
