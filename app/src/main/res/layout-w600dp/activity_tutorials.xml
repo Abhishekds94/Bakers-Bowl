@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".TutorialsActivity"
-    android:background="#27C72C2F">
+    android:background="#27C72C2F"
+    android:id="@+id/app_tablet">
 
     <FrameLayout
         android:id="@+id/videoPlayer"

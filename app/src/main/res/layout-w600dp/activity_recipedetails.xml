@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/app_tablet">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_ingredients_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EDFDFCFC"
+        android:paddingBottom="50dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/btn_tutorial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Check Tutorial"
+        android:background="@color/colorPrimary"
+        android:textColor="#fff"/>
+
+
+</RelativeLayout>
