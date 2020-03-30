@@ -95,7 +95,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 intent.putExtra(ConstantsUtil.JSON_RESULT_EXTRA, recipeJson);
                 mContext.startActivity(intent);
 
-                SharedPreferences.Editor editor = mContext.getSharedPreferences(ConstantsUtil.YUMMIO_SHARED_PREF, MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = mContext.getSharedPreferences(ConstantsUtil.SHARED_PREF, MODE_PRIVATE).edit();
                 editor.putString(ConstantsUtil.JSON_RESULT_EXTRA, recipeJson);
                 editor.apply();
 

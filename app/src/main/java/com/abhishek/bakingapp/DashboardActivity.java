@@ -55,12 +55,12 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         ButterKnife.bind(this);
 
-//        if(findViewById(R.id.recipe_tablet) != null){
-//            ifTablet = true;
-//        }
-//        else{
-//            ifTablet = false;
-//        }
+        if(findViewById(R.id.app_tablet) != null){
+            ifTablet = true;
+        }
+        else{
+            ifTablet = false;
+        }
 
         if(savedInstanceState != null){
             mJsonResult = savedInstanceState.getString(JSON_STATE);
