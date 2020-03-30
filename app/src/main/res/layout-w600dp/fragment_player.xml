@@ -6,12 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="VideoPlayerFragment"
     android:background="#27C72C2F"
-    android:id="@+id/app_tablet">
+    android:id="@+id/app_tablet"
+    android:layout_marginLeft="400dp">
 
     <com.google.android.exoplayer2.ui.SimpleExoPlayerView
         android:id="@+id/player_view"
         android:layout_centerHorizontal="true"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="150dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"

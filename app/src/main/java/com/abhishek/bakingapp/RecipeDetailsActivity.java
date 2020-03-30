@@ -30,8 +30,8 @@ import butterknife.ButterKnife;
 
 public class RecipeDetailsActivity extends AppCompatActivity {
 
-    public static final String LIST_STATE = "details_list";
-    public static final String JSON_STATE = "json_list";
+    public static final String LIST_STATE = "recipe_details_list";
+    public static final String JSON_STATE = "recipe_json_list";
 
     @BindView(R.id.rv_ingredients_list)
     RecyclerView mRecyclerView;
@@ -40,9 +40,9 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     Button mButtonTutorial;
 
     RecipeDetailsAdapter mRecipeDetailsAdapter;
-    String mJsonResult;
-    ArrayList<Step> mStepArrayList;
     ArrayList<Recipe> mRecipeArrayList;
+    ArrayList<Step> mStepArrayList;
+    String mJsonResult;
     List<Ingredient> mIngredientList;
 
     private boolean ifTablet;
@@ -54,7 +54,6 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recipedetails);
         ButterKnife.bind(this);
 
-        // Up navigation
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if(findViewById(R.id.recipedetails_tablet) != null){
@@ -81,16 +80,16 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             if(savedInstanceState != null)
             {
                 mRecipeArrayList = savedInstanceState.getParcelableArrayList(LIST_STATE);
+                mJsonResult = savedInstanceState.getString(JSON_STATE);
                 mStepArrayList = (ArrayList<Step>) mRecipeArrayList.get(0).getSteps();
                 mIngredientList = mRecipeArrayList.get(0).getIngredients();
-                mJsonResult = savedInstanceState.getString(JSON_STATE);
             }
             else{
                 Intent recipeIntent = getIntent();
+                mRecipeArrayList = recipeIntent.getParcelableArrayListExtra(ConstantsUtil.RECIPE_INTENT_EXTRA);
                 mJsonResult = recipeIntent.getStringExtra(ConstantsUtil.JSON_RESULT_EXTRA);
                 mStepArrayList = (ArrayList<Step>) mRecipeArrayList.get(0).getSteps();
                 mIngredientList = mRecipeArrayList.get(0).getIngredients();
-                mRecipeArrayList = recipeIntent.getParcelableArrayListExtra(ConstantsUtil.RECIPE_INTENT_EXTRA);
             }
         }
 
@@ -103,8 +102,10 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         else{
             mLayoutManager = new LinearLayoutManager(this);
         }
+
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mRecipeDetailsAdapter);
+
 
         mButtonTutorial.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,15 +119,19 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelableArrayList(LIST_STATE, mRecipeArrayList);
         outState.putString(JSON_STATE, mJsonResult);
-    }
-
-    @Override
-    public boolean onSupportNavigateUp(){
-        finish();
-        return true;
     }
 }
