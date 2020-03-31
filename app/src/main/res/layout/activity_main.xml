@@ -37,7 +37,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="A project of Udacity Nano Degree Course"
+        android:text="@string/splash_text"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="50dp"
         android:textSize="18sp"

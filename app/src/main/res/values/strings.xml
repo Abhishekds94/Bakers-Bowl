@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Bakers Bowl</string>
+    <string name="splash_text">A project of Udacity Nano Degree Course</string>
+    <string name="btn_Check_Tutorial">Check Tutorial</string>
+    <string name="btn_previous">Previous</string>
+    <string name="btn_next">Next</string>
 </resources>
