@@ -11,7 +11,7 @@ import com.abhishek.bakingapp.R;
 import com.abhishek.bakingapp.RecipeDetailsActivity;
 import com.abhishek.bakingapp.utils.ConstantsUtil;
 
-public class Provider extends AppWidgetProvider {
+public class Provider  extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, String jsonRecipeIngredients, int imgResId, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
@@ -23,7 +23,7 @@ public class Provider extends AppWidgetProvider {
         PendingIntent pendingIntent = PendingIntent.getActivity(context,0,intent,0);
 
         if(jsonRecipeIngredients.equals("")){
-            jsonRecipeIngredients = "No ingredients";
+            jsonRecipeIngredients = "No ingredients yet!";
         }
 
         views.setTextViewText(R.id.widget_ingredients, jsonRecipeIngredients);

@@ -15,6 +15,7 @@ import com.abhishek.bakingapp.R;
 import com.abhishek.bakingapp.RecipeDetailsActivity;
 import com.abhishek.bakingapp.model.Recipe;
 import com.abhishek.bakingapp.utils.ConstantsUtil;
+import com.abhishek.bakingapp.widget.Service;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -99,14 +100,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 editor.putString(ConstantsUtil.JSON_RESULT_EXTRA, recipeJson);
                 editor.apply();
 
-/*                if(Build.VERSION.SDK_INT > 25){
-                    //Start the widget service to update the widget
-                    YummioWidgetService.startActionOpenRecipeO(mContext);
+                if(Build.VERSION.SDK_INT > 25){
+                    Service.startActionOpenRecipeO(mContext);
                 }
                 else{
-                    //Start the widget service to update the widget
-                    YummioWidgetService.startActionOpenRecipe(mContext);
-                }*/
+                    Service.startActionOpenRecipe(mContext);
+                }
             }
         });
 

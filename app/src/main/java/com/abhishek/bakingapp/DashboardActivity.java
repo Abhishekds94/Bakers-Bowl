@@ -104,8 +104,6 @@ public class DashboardActivity extends AppCompatActivity {
                 Log.i("BAKING_APP", "Recipe"+recipe);
                 mArrayList = response.body();
                 Log.i("BAKING_APP", "BR-"+mArrayList);
-                Toast.makeText(DashboardActivity.this, "Recipe"+recipe, Toast.LENGTH_SHORT).show();
-                Toast.makeText(DashboardActivity.this, "BR-"+mArrayList, Toast.LENGTH_SHORT).show();
                 mJsonResult = new Gson().toJson(response.body());
 
                 recipeAdapter = new RecipeAdapter(DashboardActivity.this, mArrayList, mJsonResult);

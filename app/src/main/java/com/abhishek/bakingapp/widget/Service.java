@@ -30,28 +30,24 @@ import androidx.core.content.ContextCompat;
 public class Service extends IntentService {
 
     public static final String ACTION_OPEN_RECIPE =
-            "com.abhishek.bakingapp.widget";
+            "com.abhishek.bakingapp.widget.service";
 
-    /**
-     * Creates an IntentService.  Invoked by your subclass's constructor.
-     *
-     * @param name Used to name the worker thread, important only for debugging.
-     */
+
     public Service(String name) {
         super(name);
     }
 
     public Service() {
-        super("BakersBowlService");
+        super("Service");
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
         if (Build.VERSION.SDK_INT >= 26) {
-            String CHANNEL_ID = "abc";
+            String CHANNEL_ID = "my_baking_01";
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
-                    "Bakers Bowl",
+                    "Baking Bowl service",
                     NotificationManager.IMPORTANCE_DEFAULT);
 
             ((NotificationManager) getSystemService(NOTIFICATION_SERVICE)).createNotificationChannel(channel);
