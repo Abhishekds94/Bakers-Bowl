@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://github.com/Abhishekds94/Bakers-Bowl/blob/master/app/src/main/res/drawable/logo.png" width="220">
+	<img src="https://github.com/Abhishekds94/Bakers-Bowl/blob/master/app/src/main/res/drawable/splash.png" width="220">
 </p>
 
 # Bakers Bowl
@@ -48,7 +48,7 @@ You can build the app with Android Studio or with `./gradlew assembleDebug` comm
 
 ## App Working Video
 
-<a href="https://youtu.be/DKohbgfkVo4" target="_blank"><img src="https://github.com/Abhishekds94/Take-Me-There/blob/master/Bakers-Bowl/video.jpg" 
+<a href="https://youtu.be/DKohbgfkVo4" target="_blank"><img src="https://github.com/Abhishekds94/Bakers-Bowl/blob/master/Bakers-Bowl/video.jpg" 
 alt="Video Working" width="220" /></a>
 
 
