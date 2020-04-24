@@ -44,6 +44,8 @@ You can build the app with Android Studio or with `./gradlew assembleDebug` comm
   <img src="https://github.com/Abhishekds94/Bakers-Bowl/blob/master/Screenshots/img4.jpg" width="220">
 
   <img src="https://github.com/Abhishekds94/Bakers-Bowl/blob/master/Screenshots/img5.jpg" width="220">
+  
+  <img src="https://github.com/Abhishekds94/Bakers-Bowl/blob/master/Screenshots/img6.jpg" width="220">
 </div>
 
 ## App Working Video
